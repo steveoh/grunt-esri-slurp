@@ -1,15 +1,17 @@
 {
-  "name": "slurp-esri",
+  "name": "grunt-slurp-esri",
   "version": "0.0.1",
   "description": "download esri js api amd modules and create a package",
-  "homepage": "https://github.com/steveoh/slurp-esri",
-  "repository": "git://github.com/steveoh/slurp-esri",
+  "homepage": "https://github.com/steveoh/grunt-slurp-esri",
+  "repository": "git://github.com/steveoh/grunt-slurp-esri",
   "author": {
     "name": "steveoh",
     "email": "sgourley@utah.gov"
   },
   "keywords": [
-    "gruntplugin"
+    "gruntplugin",
+    "esri",
+    "agrc"
   ],
   "main": "Gruntfile.js",
   "engines": {

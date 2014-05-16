@@ -35,13 +35,13 @@ module.exports = function(grunt) {
     var esriVersionBaseUrl = 'http://js.arcgis.com/' + options.version + 'amd/js/esri/';
     grunt.verbose.writeln('esri base url: ' + esriVersionBaseUrl);
 
-    async.each(esriModules, function(file, callback) {
+    async.eachLimit(esriModules, 10, function(file, callback) {
       var subPath = file.substr(0, file.lastIndexOf('/') + 1),
         fileFolder = options.packageLocation + subPath,
         fileName = path.basename(file),
         httpUrl = esriVersionBaseUrl + subPath + fileName;
 
-      if (!path.exists(fileFolder)) {
+      if (!fs.exists(fileFolder)) {
         mkdirp.sync(fileFolder);
       }
 
@@ -53,13 +53,13 @@ module.exports = function(grunt) {
         },
         function(error, response, body) {
           grunt.verbose.writeln('writing to: ' + options.packageLocation + file);
+
           if (body && body.length > 0) {
+            grunt.log.writeln('writing ' + file);
             fs.writeFile(options.packageLocation + file, body, 'binary');
           }
 
-          grunt.log.writeln('writing ' + file);
-
-          callback();
+          callback(error, body);
         },
         function(err) {
           // if any of the file processing produced an error, err would equal that error
