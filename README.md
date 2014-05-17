@@ -26,10 +26,8 @@ In your project's Gruntfile, add a section named `esri_slurp` to the data object
 grunt.initConfig({
   esri_slurp: {
     options: {
-      // Task-specific options go here.
-    },
-    your_target: {
-      // Target-specific file lists and/or options go here.
+      version: '3.9',
+      packageLocation: 'src/esri'
     },
   },
 })
@@ -37,56 +35,20 @@ grunt.initConfig({
 
 ### Options
 
-#### options.separator
+#### options.version
 Type: `String`
-Default value: `',  '`
+Default value: `'3.9'`
 
 A string value that is used to do something with whatever.
 
-#### options.punctuation
+#### options.packageLocation
 Type: `String`
-Default value: `'.'`
+Default value: `'src/esri'`
 
 A string value that is used to do something else with whatever else.
 
-### Usage Examples
-
-#### Default Options
-In this example, the default options are used to do something with whatever. So if the `testing` file has the content `Testing` and the `123` file had the content `1 2 3`, the generated result would be `Testing, 1 2 3.`
-
-```js
-grunt.initConfig({
-  esri_slurp: {
-    options: {},
-    files: {
-      'dest/default_options': ['src/testing', 'src/123'],
-    },
-  },
-})
-```
-
-#### Custom Options
-In this example, custom options are used to do something else with whatever else. So if the `testing` file has the content `Testing` and the `123` file had the content `1 2 3`, the generated result in this case would be `Testing: 1 2 3 !!!`
-
-```js
-grunt.initConfig({
-  esri_slurp: {
-    options: {
-      separator: ': ',
-      punctuation: ' !!!',
-    },
-    files: {
-      'dest/default_options': ['src/testing', 'src/123'],
-    },
-  },
-})
-```
-
-## Contributing
-In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
-
 ## Release History
-_(Nothing yet)_
+**0.1.0**: Download modules to location
 
 ## License
 Copyright (c) 2014 steveoh. Licensed under the MIT license.
