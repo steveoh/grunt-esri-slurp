@@ -26,7 +26,7 @@ module.exports = function(grunt) {
 
     options.packageLocation = S(options.packageLocation).ensureRight('/').s;
 
-    grunt.log.writeln('version: ' + '3.9');
+    grunt.log.writeln('version: ' + options.version);
     grunt.log.writeln('package location: ' + options.packageLocation);
 
     mkdirp.sync(options.packageLocation);

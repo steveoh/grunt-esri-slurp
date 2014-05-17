@@ -33,7 +33,10 @@ module.exports = function(grunt) {
 
     // Configuration to be run (and then tested).
     slurp_esri: {
-      options: {}
+      options: {
+        version: '3.8',
+        packageLocation: './src/wtf/'
+      }
     },
 
     // Unit tests.
