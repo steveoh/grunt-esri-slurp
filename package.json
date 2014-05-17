@@ -24,7 +24,8 @@
     "grunt-contrib-nodeunit": "~0.3.0",
     "grunt": "~0.4",
     "jshint-stylish": "~0.1.5",
-    "load-grunt-tasks": "~0.3.0"
+    "load-grunt-tasks": "~0.3.0",
+    "grunt-bump": "0.0.14"
   },
   "dependencies": {
     "request": "^2.34.0",

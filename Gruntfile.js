@@ -30,21 +30,28 @@ module.exports = function(grunt) {
     clean: {
       tests: ['tmp', 'src']
     },
-    // Configuration to be run (and then tested).
-    slurp_esri: {
-      options: {
-        version: '3.8',
-        packageLocation: 'src/esri/'
-      }
-    },
+    slurp_esri: {},
     // Unit tests.
     nodeunit: {
       tests: ['test/*_test.js']
-    }
+    },
+    bump: {
+            options: {
+                files: ['package.json'],
+                commit: true,
+                commitFiles: ['-a'], // '-a' for all files
+                createTag: true,
+                tagName: 'v%VERSION%',
+                tagMessage: 'Version %VERSION%',
+                push: true,
+                pushTo: 'origin'
+            }
+          }
   });
 
   // Actually load this plugin's task(s).
   grunt.loadTasks('tasks');
+  grunt.loadNpmTasks('grunt-bump');
 
   // Whenever the "test" task is run, first clean the "tmp" dir, then run this
   // plugin's task(s), then test the result.
