@@ -1,9 +1,12 @@
 {
   "name": "grunt-slurp-esri",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "download esri js api amd modules and create a package",
-  "homepage": "https://github.com/steveoh/grunt-slurp-esri",
-  "repository": "git://github.com/steveoh/grunt-slurp-esri",
+  "homepage": "https://github.com/steveoh/grunt-esri-slurp",
+  "repository" : { 
+    "type" : "git", 
+    "url" : "https://github.com/steveoh/grunt-esri-slurp.git"
+  },
   "author": {
     "name": "steveoh",
     "email": "sgourley@utah.gov"

@@ -36,17 +36,8 @@ module.exports = function(grunt) {
       tests: ['test/*_test.js']
     },
     bump: {
-            options: {
-                files: ['package.json'],
-                commit: true,
-                commitFiles: ['-a'], // '-a' for all files
-                createTag: true,
-                tagName: 'v%VERSION%',
-                tagMessage: 'Version %VERSION%',
-                push: true,
-                pushTo: 'origin'
-            }
-          }
+      pushTo: 'origin'
+    }
   });
 
   // Actually load this plugin's task(s).
