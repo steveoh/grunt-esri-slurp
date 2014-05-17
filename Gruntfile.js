@@ -30,7 +30,11 @@ module.exports = function(grunt) {
     clean: {
       tests: ['tmp', 'src']
     },
-    slurp_esri: {},
+    esri_slurp: {
+      options:{
+        version:  '3.8'
+      }
+    },
     // Unit tests.
     nodeunit: {
       tests: ['test/*_test.js']

@@ -1,6 +1,6 @@
 /*
- * slurp-esri
- * github.com/steveoh/slurp-esri
+ * esri_slurp
+ * github.com/steveoh/esri_slurp
  *
  * Copyright (c) 2014 steveoh
  * Licensed under the MIT license.

@@ -1,5 +1,5 @@
 {
-  "name": "grunt-slurp-esri",
+  "name": "grunt-esri-slurp",
   "version": "0.1.0",
   "description": "download esri js api amd modules and create a package",
   "homepage": "https://github.com/steveoh/grunt-esri-slurp",
