@@ -7,31 +7,30 @@
  */
 
 'use strict';
-var async = require('async'),
-  fs = require('fs'),
+var fs = require('fs'),
   path = require('path'),
+
+  async = require('async'),
   mkdirp = require('mkdirp'),
-  S = require('string'),
   request = require("request"),
+  S = require('string'),
+
   esriModules = require('./esriModules');
 
 module.exports = function(grunt) {
-  grunt.registerTask('slurp_esri', 'download esri js api amd modules and create a package', function() {
-    // Merge task-specific and/or target-specific options with these defaults.
+  grunt.registerTask('esri_slurp', 'download esri js api amd modules and create a package', function() {
     var options = this.options({
-        packageLocation: './src/esri/',
+        packageLocation: 'src/esri/',
         version: '3.9'
       }),
       done = this.async();
 
     options.packageLocation = S(options.packageLocation).ensureRight('/').s;
 
-    grunt.log.writeln('version: ' + options.version);
-    grunt.log.writeln('package location: ' + options.packageLocation);
+    grunt.log.subhead('downloading esri version ' + options.version + ' modules');
 
     mkdirp.sync(options.packageLocation);
 
-    // App variables
     var esriVersionBaseUrl = 'http://js.arcgis.com/' + options.version + 'amd/js/esri/';
     grunt.verbose.writeln('esri base url: ' + esriVersionBaseUrl);
 
@@ -41,33 +40,27 @@ module.exports = function(grunt) {
         fileName = path.basename(file),
         httpUrl = esriVersionBaseUrl + subPath + fileName;
 
-      if (!fs.exists(fileFolder)) {
+      if (!fs.existsSync(fileFolder)) {
+        grunt.verbose.writeln(['creating folder ' + fileFolder]);
+        
         mkdirp.sync(fileFolder);
       }
 
-      grunt.log.writeln('requesting ' + httpUrl);
+      grunt.verbose.writeln(['requesting ' + httpUrl]);
 
-      request.get({
-          url: httpUrl,
+      request({
+          uri: httpUrl,
           encoding: 'binary'
         },
         function(error, response, body) {
-          grunt.verbose.writeln('writing to: ' + options.packageLocation + file);
-
           if (body && body.length > 0) {
-            grunt.log.writeln('writing ' + file);
+            grunt.verbose.or.write('.');
+            grunt.verbose.writeln(['writing: ' +options.packageLocation + file]);
+
             fs.writeFile(options.packageLocation + file, body, 'binary');
           }
 
           callback(error, body);
-        },
-        function(err) {
-          // if any of the file processing produced an error, err would equal that error
-          if (err) {
-            // One of the iterations produced an error.
-            // All processing will now stop.
-            grunt.fail.warn('A file failed to process');
-          }
         });
     });
   });

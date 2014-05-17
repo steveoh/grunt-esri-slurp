@@ -28,17 +28,15 @@ module.exports = function(grunt) {
 
     // Before generating any new files, remove any previously-created files.
     clean: {
-      tests: ['tmp', './src', './custom', './test']
+      tests: ['tmp', 'src']
     },
-
     // Configuration to be run (and then tested).
     slurp_esri: {
       options: {
         version: '3.8',
-        packageLocation: './src/wtf/'
+        packageLocation: 'src/esri/'
       }
     },
-
     // Unit tests.
     nodeunit: {
       tests: ['test/*_test.js']
@@ -50,8 +48,8 @@ module.exports = function(grunt) {
 
   // Whenever the "test" task is run, first clean the "tmp" dir, then run this
   // plugin's task(s), then test the result.
-  grunt.registerTask('test', ['clean', 'slurp_esri', 'nodeunit']);
+  grunt.registerTask('test', ['clean', 'esri_slurp', 'nodeunit']);
 
   // By default, lint and run all tests.
-  grunt.registerTask('default', ['clean', 'jshint', 'slurp_esri']);
+  grunt.registerTask('default', ['jshint', 'test']);
 };
