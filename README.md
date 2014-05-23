@@ -48,6 +48,7 @@ Default value: `'src/esri'`
 A string value that is used to do something else with whatever else.
 
 ## Release History
+**0.2.0**: Fix up the defines  
 **0.1.0**: Download modules to location
 
 ## License
