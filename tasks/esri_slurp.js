@@ -43,7 +43,7 @@ module.exports = function(grunt) {
 
       if (!fs.existsSync(fileFolder)) {
         grunt.verbose.writeln(['creating folder ' + fileFolder]);
-        
+
         mkdirp.sync(fileFolder);
       }
 
@@ -59,10 +59,10 @@ module.exports = function(grunt) {
             grunt.verbose.writeln(['writing: ' + options.packageLocation + file]);
 
             var f = S(file);
-            if(f.endsWith('.js') || f.endsWith('.css')){
+            if (f.endsWith('.js') || f.endsWith('.css')) {
               body = unwind(body);
             }
-            
+
             fs.writeFile(options.packageLocation + file, body, 'binary');
           }
 

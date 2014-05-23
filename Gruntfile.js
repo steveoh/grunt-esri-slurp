@@ -31,9 +31,6 @@ module.exports = function(grunt) {
       tests: ['tmp', 'src']
     },
     esri_slurp: {
-      options: {
-        version: '3.8'
-      }
     },
     // Unit tests.
     nodeunit: {
@@ -51,11 +48,9 @@ module.exports = function(grunt) {
   grunt.loadTasks('tasks');
   grunt.loadNpmTasks('grunt-bump');
 
-  // Whenever the "test" task is run, first clean the "tmp" dir, then run this
-  // plugin's task(s), then test the result.
-  grunt.registerTask('test', ['clean', 'nodeunit']);
 
-  // By default, lint and run all tests.
+  grunt.registerTask('test', ['clean', 'jshint', 'nodeunit']);
+
   grunt.registerTask('default', ['jshint', 'esri_slurp']);
 
   grunt.registerTask('travis', ['jshint', 'esri_slurp', 'nodeunit']);

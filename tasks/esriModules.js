@@ -298,6 +298,7 @@ var esriAMD = [
     'dijit/templates/Measurement.html',
     'dijit/templates/OverviewMap.html',
     'dijit/templates/TimeSlider.html',
+    'dijit/templates/HomeButton.html',
     'dijit/TimeSlider.js',
     'domUtils.js',
     'Evented.js',
