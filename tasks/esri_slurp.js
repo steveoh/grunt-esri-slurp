@@ -58,7 +58,8 @@ module.exports = function(grunt) {
             grunt.verbose.or.write('.');
             grunt.verbose.writeln(['writing: ' + options.packageLocation + file]);
 
-            if(S(file).endsWith('.js')){
+            var f = S(file);
+            if(f.endsWith('.js') || f.endsWith('.css')){
               body = unwind(body);
             }
             
