@@ -16,10 +16,9 @@ module.exports = function(text) {
     }
 
     var requireString = matches[1];
-    // TODO: see if these are necessary
-    // requireString = requireString.replace(/dojo\/dijit\/themes/g, 'dijit/themes');
-    // requireString = requireString.replace(/dojo\/dojox\/grid\/resources\/images/g, 'dojox/grid/resources/images');
-    // requireString = requireString.replace(/dojo\/dojo\/resources\/images/g, 'dojo/resources/images');
+    requireString = requireString.replace(/dojo\/dijit\/themes/g, 'dijit/themes');
+    requireString = requireString.replace(/dojo\/dojox\/grid\/resources\/images/g, 'dojox/grid/resources/images');
+    requireString = requireString.replace(/dojo\/dojo\/resources\/images/g, 'dojo/resources/images');
 
     var requireArgs = requireString.split(' ');
 
