@@ -9,13 +9,13 @@ This plugin requires Grunt.
 If you haven't used [Grunt](http://gruntjs.com/) before, be sure to check out the [Getting Started](http://gruntjs.com/getting-started) guide, as it explains how to create a [Gruntfile](http://gruntjs.com/sample-gruntfile) as well as install and use Grunt plugins. Once you're familiar with that process, you may install this plugin with this command:
 
 ```shell
-npm install esri-slurp --save-dev
+npm install grunt-esri-slurp --save-dev
 ```
 
 Once the plugin has been installed, it may be enabled inside your Gruntfile with this line of JavaScript:
 
 ```js
-grunt.loadNpmTasks('esri-slurp');
+grunt.loadNpmTasks('grunt-esri-slurp');
 ```
 
 ## The "esri_slurp" task
@@ -24,14 +24,20 @@ grunt.loadNpmTasks('esri-slurp');
 In your project's Gruntfile, add a section named `esri_slurp` to the data object passed into `grunt.initConfig()`.
 
 ```js
-grunt.initConfig({
-  esri_slurp: {
-    options: {
-      version: '3.9',
-      packageLocation: 'src/esri'
-    },
-  },
-})
+module.exports = function (grunt) {
+  grunt.initConfig({
+    esri_slurp: {
+      options: {
+        version: '3.9',
+        packageLocation: 'src/esri'
+      }
+    }
+  });
+
+  grunt.loadNpmTasks('grunt-esri-slurp');
+
+  grunt.registerTask('slurp', ['esri_slurp']);
+};
 ```
 
 ### Options
