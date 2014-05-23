@@ -9,9 +9,9 @@
 */
 
 module.exports = function(text) {
-    var matches = /define\(\"(.*)\".split\("\s"\)/m.exec(text);
+    var matches = /define\(\"(.*)\".split\("\s"\)([\s\S]*)/m.exec(text);
 
-    if(matches === null || matches.length < 1){
+    if(matches === null || matches.length < 2){
         return text;
     }
 
@@ -29,7 +29,7 @@ module.exports = function(text) {
 
     var requires = requireArgs.join(',');
 
-    var unwound = '//>>built\ndefine([' + requires + '],';
+    var unwound = '//>>built\ndefine([' + requires + ']' + matches[2];
 
     return unwound;
 };
