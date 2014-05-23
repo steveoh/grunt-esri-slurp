@@ -15,6 +15,7 @@ var fs = require('fs'),
   request = require("request"),
   S = require('string'),
 
+  unwind = require('./unwinder'),
   esriModules = require('./esriModules');
 
 module.exports = function(grunt) {
@@ -55,8 +56,12 @@ module.exports = function(grunt) {
         function(error, response, body) {
           if (body && body.length > 0) {
             grunt.verbose.or.write('.');
-            grunt.verbose.writeln(['writing: ' +options.packageLocation + file]);
+            grunt.verbose.writeln(['writing: ' + options.packageLocation + file]);
 
+            if(S(file).endsWith('.js')){
+              body = unwind(body);
+            }
+            
             fs.writeFile(options.packageLocation + file, body, 'binary');
           }
 
