@@ -35,6 +35,15 @@ exports.regular_expression = {
     test.equal(actual, expected, 'should split requires');
 
     test.done();
+  },
+  fix_css_paths: function(test){
+    var actual = grunt.file.read('test/expected/wound_css');
+    actual = unwind(actual);
+    var expected = grunt.file.read('test/expected/unwound_css');
+
+    test.equal(actual, expected, 'should sremove dojo prefix');
+
+    test.done();
   }
 };
 // exports.esri_slurp = {

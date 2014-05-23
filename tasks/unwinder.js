@@ -10,15 +10,16 @@
 
 module.exports = function(text) {
     var matches = /define\(\"(.*)\".split\("\s"\)([\s\S]*)/m.exec(text);
+    
+    text = text.replace(/dojo\/dijit\/themes/g, 'dijit/themes');
+    text = text.replace(/dojo\/dojox\/grid\/resources\/images/g, 'dojox/grid/resources/images');
+    text = text.replace(/dojo\/dojo\/resources\/images/g, 'dojo/resources/images');
 
     if(matches === null || matches.length < 2){
         return text;
     }
 
     var requireString = matches[1];
-    requireString = requireString.replace(/dojo\/dijit\/themes/g, 'dijit/themes');
-    requireString = requireString.replace(/dojo\/dojox\/grid\/resources\/images/g, 'dojox/grid/resources/images');
-    requireString = requireString.replace(/dojo\/dojo\/resources\/images/g, 'dojo/resources/images');
 
     var requireArgs = requireString.split(' ');
 
