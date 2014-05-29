@@ -1,6 +1,6 @@
 /*
- * esri_slurp
- * github.com/steveoh/esri_slurp
+ * grunt-esri-slurp
+ * https://github.com/steveoh/grunt-esri-slurp
  *
  * Copyright (c) 2014 steveoh
  * Licensed under the MIT license.
