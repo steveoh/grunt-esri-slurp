@@ -21,12 +21,12 @@ var fs = require('fs'),
 module.exports = function(grunt) {
   grunt.registerTask('esri_slurp', 'download esri js api amd modules and create a package', function() {
     var options = this.options({
-        packageLocation: 'src/esri/',
+        packageLocation: path.join('src', 'esri'),
         version: '3.9'
       }),
       done = this.async();
 
-    options.packageLocation = S(options.packageLocation).ensureRight('/').s;
+    options.packageLocation = S(options.packageLocation).ensureRight(path.sep).s;
 
     grunt.log.subhead('downloading esri version ' + options.version + ' modules');
 
@@ -36,8 +36,8 @@ module.exports = function(grunt) {
     grunt.verbose.writeln('esri base url: ' + esriVersionBaseUrl);
 
     async.eachLimit(esriModules, 10, function(file, callback) {
-      var subPath = file.substr(0, file.lastIndexOf('/') + 1),
-        fileFolder = options.packageLocation + subPath,
+      var subPath = file.substr(0, file.lastIndexOf(path.sep) + 1),
+        fileFolder = path.join(options.packageLocation, subPath),
         fileName = path.basename(file),
         httpUrl = esriVersionBaseUrl + subPath + fileName;
 
@@ -54,17 +54,21 @@ module.exports = function(grunt) {
           encoding: 'binary'
         },
         function(error, response, body) {
-          if (body && body.length > 0) {
-            grunt.verbose.or.write('.');
-            grunt.verbose.writeln(['writing: ' + options.packageLocation + file]);
-
-            var f = S(file);
-            if (f.endsWith('.js') || f.endsWith('.css')) {
-              body = unwind(body);
-            }
-
-            fs.writeFile(options.packageLocation + file, body, 'binary');
+          if (!body && body.length < 1) {
+            return;
           }
+
+          var newFile = path.join(options.packageLocation, file);
+
+          grunt.verbose.or.write('.');
+          grunt.verbose.writeln(['writing: ' + newFile]);
+
+          var extension = path.extname(file);
+          if (extension === '.js' || extension === '.css') {
+            body = unwind(body);
+          }
+
+          fs.writeFile(newFile, body, 'binary');
 
           callback(error, body);
         });
