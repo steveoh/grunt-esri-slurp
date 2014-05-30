@@ -1,7 +1,7 @@
 [![Build Status](https://travis-ci.org/steveoh/grunt-esri-slurp.svg?branch=master)](https://travis-ci.org/steveoh/grunt-esri-slurp)
 # esri-slurp
 
-> download esri js api amd modules and create a package
+> download esri js api amd modules to create a local package
 
 ## Getting Started
 This plugin requires Grunt.
@@ -55,8 +55,11 @@ Default value: `'src/esri'`
 A string value that is used to do something else with whatever else.
 
 ## Release History
-**0.2.0**: Fix up the defines  
-**0.1.0**: Download modules to location
+**0.3.0**: Fixed async code and should now run on multiple os's.
+
+**0.2.0**: Split up the defines so packages can be required again.
+
+**0.1.0**: Can download modules to a specified location.
 
 ## License
 Copyright (c) 2014 steveoh. Licensed under the MIT license.
