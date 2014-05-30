@@ -36,7 +36,7 @@ module.exports = function(grunt) {
     grunt.verbose.writeln('esri base url: ' + esriVersionBaseUrl);
 
     async.eachLimit(esriModules, 10, function(file, callback) {
-      var subPath = file.substr(0, file.lastIndexOf(path.sep) + 1),
+      var subPath = S(path.dirname(file)).ensureRight('/').s,
         fileFolder = path.join(options.packageLocation, subPath),
         fileName = path.basename(file),
         httpUrl = esriVersionBaseUrl + subPath + fileName;
@@ -54,7 +54,9 @@ module.exports = function(grunt) {
           encoding: 'binary'
         },
         function(error, response, body) {
-          if (!body && body.length < 1) {
+          if (body.length < 1) {
+            callback(error, body);
+
             return;
           }
 
@@ -72,6 +74,11 @@ module.exports = function(grunt) {
 
           callback(error, body);
         });
+    }, function(err) {
+      if (err) {
+        grunt.warn(err);
+      }
+      done();
     });
   });
 };
