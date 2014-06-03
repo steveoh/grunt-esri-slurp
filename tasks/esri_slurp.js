@@ -14,6 +14,7 @@ var fs = require('fs'),
   mkdirp = require('mkdirp'),
   request = require("request"),
   S = require('string'),
+  ProgressBar = require('progress'),
 
   unwind = require('./unwinder'),
   esriModules = require('./esriModules');
@@ -35,6 +36,12 @@ module.exports = function(grunt) {
     var esriVersionBaseUrl = 'http://js.arcgis.com/' + options.version + 'amd/js/esri/';
     grunt.verbose.writeln('esri base url: ' + esriVersionBaseUrl);
 
+    var bar = new ProgressBar('downloading [:bar] :percent :etas', {
+      total: esriModules.length,
+      stream: process.stdout,
+      width: 30
+    });
+
     async.eachLimit(esriModules, 10, function(file, callback) {
       var subPath = S(path.dirname(file)).ensureRight('/').s,
         fileFolder = path.join(options.packageLocation, subPath),
@@ -54,15 +61,16 @@ module.exports = function(grunt) {
           encoding: 'binary'
         },
         function(error, response, body) {
+
           if (body.length < 1) {
             callback(error, body);
+            bar.total = bar.total - 1;
 
             return;
           }
 
           var newFile = path.join(options.packageLocation, file);
 
-          grunt.verbose.or.write('.');
           grunt.verbose.writeln(['writing: ' + newFile]);
 
           var extension = path.extname(file);
@@ -73,6 +81,8 @@ module.exports = function(grunt) {
           fs.writeFile(newFile, body, 'binary');
 
           callback(error, body);
+
+          bar.tick();
         });
     }, function(err) {
       if (err) {
