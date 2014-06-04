@@ -57,6 +57,8 @@ Default value: `'src/esri'`
 A string value that is used to do something else with whatever else.
 
 ## Release History
+**0.4.0**: Added progress bar and task to build module list. Stored 3.8 and 3.9 modules by default. Anything earlier and you'll have to run it yourself.
+
 **0.3.0**: Fixed async code and should now run on multiple os's.
 
 **0.2.0**: Split up the defines so packages can be required again.
