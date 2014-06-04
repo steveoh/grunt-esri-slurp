@@ -16,8 +16,7 @@ var fs = require('fs'),
   S = require('string'),
   ProgressBar = require('progress'),
 
-  unwind = require('./unwinder'),
-  esriModules = require('./esriModules');
+  unwind = require('./unwinder');
 
 module.exports = function(grunt) {
   grunt.registerTask('esri_slurp', 'download esri js api amd modules and create a package', function() {
@@ -36,13 +35,15 @@ module.exports = function(grunt) {
     var esriVersionBaseUrl = 'http://js.arcgis.com/' + options.version + 'amd/js/esri/';
     grunt.verbose.writeln('esri base url: ' + esriVersionBaseUrl);
 
+    var esriModules = require('./esriModules-' + options.version);
+
     var bar = new ProgressBar('downloading [:bar] :percent :etas', {
       total: esriModules.length,
       stream: process.stdout,
       width: 30
     });
 
-    async.eachLimit(esriModules, 10, function(file, callback) {
+    async.eachLimit(esriModules, 20, function(file, callback) {
       var subPath = S(path.dirname(file)).ensureRight('/').s,
         fileFolder = path.join(options.packageLocation, subPath),
         fileName = path.basename(file),
