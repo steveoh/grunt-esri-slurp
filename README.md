@@ -1,4 +1,5 @@
 [![Build Status](https://travis-ci.org/steveoh/grunt-esri-slurp.svg?branch=master)](https://travis-ci.org/steveoh/grunt-esri-slurp)
+[![Dependency Status](https://gemnasium.com/steveoh/grunt-esri-slurp.svg)](https://gemnasium.com/steveoh/grunt-esri-slurp)
 # esri-slurp
 
 > download esri js api amd modules to create a local package
