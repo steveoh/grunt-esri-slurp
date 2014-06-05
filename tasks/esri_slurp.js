@@ -50,29 +50,23 @@ module.exports = function(grunt) {
         httpUrl = esriVersionBaseUrl + subPath + fileName;
 
       if (!fs.existsSync(fileFolder)) {
-        grunt.verbose.writeln(['creating folder ' + fileFolder]);
-
         mkdirp.sync(fileFolder);
       }
-
-      grunt.verbose.writeln(['requesting ' + httpUrl]);
 
       request({
           uri: httpUrl,
           encoding: 'binary'
         },
         function(error, response, body) {
-
           if (body.length < 1) {
-            callback(error, body);
             bar.total = bar.total - 1;
+
+            callback(error, body);
 
             return;
           }
 
           var newFile = path.join(options.packageLocation, file);
-
-          grunt.verbose.writeln(['writing: ' + newFile]);
 
           var extension = path.extname(file);
           if (extension === '.js' || extension === '.css') {
@@ -81,14 +75,15 @@ module.exports = function(grunt) {
 
           fs.writeFile(newFile, body, 'binary');
 
-          callback(error, body);
-
           bar.tick();
+
+          callback(error, body);
         });
     }, function(err) {
       if (err) {
-        grunt.warn(err);
+        grunt.fail.warn(err);
       }
+
       done();
     });
   });
