@@ -11,8 +11,9 @@ var fs = require('fs'),
   path = require('path'),
 
   async = require('async'),
+  beautify = require('js-beautify').js_beautify,
   mkdirp = require('mkdirp'),
-  request = require("request"),
+  request = require('request'),
   S = require('string'),
   ProgressBar = require('progress'),
 
@@ -22,7 +23,8 @@ module.exports = function(grunt) {
   grunt.registerTask('esri_slurp', 'download esri js api amd modules and create a package', function() {
     var options = this.options({
         packageLocation: path.join('src', 'esri'),
-        version: '3.9'
+        version: '3.9',
+        beautify: false
       }),
       done = this.async();
 
@@ -71,6 +73,10 @@ module.exports = function(grunt) {
           var extension = path.extname(file);
           if (extension === '.js' || extension === '.css') {
             body = unwind(body);
+
+            if(options.beautify){
+              body = beautify(body);
+            }
           }
 
           fs.writeFile(newFile, body, 'binary');

@@ -31,7 +31,8 @@ module.exports = function (grunt) {
     esri_slurp: {
       options: {
         version: '3.9',
-        packageLocation: 'src/esri'
+        packageLocation: 'src/esri',
+        beautify: true
       }
     }
   });
@@ -56,7 +57,15 @@ Default value: `'src/esri'`
 
 A string value that is used to do something else with whatever else.
 
+#### options.beautify
+Type: `Boolean`
+Default value: `true`
+
+A boolean value to make the js code beautify before saving.
+
 ## Release History
+**0.5.0** Added js-beautify option. esriModuleBuilder task now works on windows. 3.10 module list now in plugin.
+
 **0.4.0**: Added progress bar and task to build module list. Stored 3.8 and 3.9 modules by default. Anything earlier and you'll have to run it yourself.
 
 **0.3.0**: Fixed async code and should now run on multiple os's.

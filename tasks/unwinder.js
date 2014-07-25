@@ -25,7 +25,7 @@ module.exports = function(text) {
 
     var requires = requireArgs.join(',');
 
-    var unwound = '//>>built\ndefine([' + requires + ']' + matches[2];
+    var unwound = '//>>built\r\ndefine([' + requires + ']' + matches[2];
 
     return unwound;
 };

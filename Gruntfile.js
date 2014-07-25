@@ -1,6 +1,6 @@
 /*
- * slurp-esri
- * github.com/steveoh/slurp-esri
+ * grunt-esri-slurp
+ * https://github.com/steveoh/grunt-esri-slurp
  *
  * Copyright (c) 2014 steveoh
  * Licensed under the MIT license.
@@ -8,11 +8,12 @@
 
 'use strict';
 
+var version = '3.10';
+
 module.exports = function(grunt) {
   // load all npm grunt tasks
   require('load-grunt-tasks')(grunt);
 
-  // Project configuration.
   grunt.initConfig({
     jshint: {
       all: [
@@ -25,14 +26,21 @@ module.exports = function(grunt) {
         reporter: require('jshint-stylish')
       }
     },
-
-    // Before generating any new files, remove any previously-created files.
     clean: {
       tests: ['tmp', 'src']
     },
     esri_slurp: {
+      options: {
+        version: version,
+        beautify: true
+      },
+      travis: {
+        options: {
+          beautify: false,
+          version: version
+        }
+      }
     },
-    // Unit tests.
     nodeunit: {
       tests: ['test/*_test.js']
     },
@@ -41,17 +49,28 @@ module.exports = function(grunt) {
         pushTo: 'origin',
         commit: true
       }
+    },
+    esri_slurp_modules: {
+      options: {
+        version: version
+      }
     }
   });
 
-  // Actually load this plugin's task(s).
-  grunt.loadTasks('tasks');
-  grunt.loadNpmTasks('grunt-bump');
+  for (var key in grunt.file.readJSON('package.json').devDependencies) {
+    console.log(key);
+    if (key !== 'grunt' && key.indexOf('grunt') === 0) {
+      grunt.loadNpmTasks(key);
+    }
+  }
 
+  grunt.loadTasks('tasks');
 
   grunt.registerTask('test', ['clean', 'jshint', 'nodeunit']);
 
   grunt.registerTask('default', ['jshint', 'esri_slurp']);
 
-  grunt.registerTask('travis', ['jshint', 'esri_slurp', 'nodeunit']);
+  grunt.registerTask('generate_list', ['esri_slurp_modules']);
+
+  grunt.registerTask('travis', ['jshint', 'esri_slurp:travis', 'nodeunit']);
 };
