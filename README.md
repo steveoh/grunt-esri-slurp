@@ -59,7 +59,7 @@ A string value that is used to do something else with whatever else.
 
 #### options.beautify
 Type: `Boolean`
-Default value: `true`
+Default value: `false`
 
 A boolean value to make the js code beautify before saving.
 
