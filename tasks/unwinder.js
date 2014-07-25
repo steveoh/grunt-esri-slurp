@@ -1,4 +1,16 @@
+/*
+ * grunt-esri-slurp
+ * https://github.com/steveoh/grunt-esri-slurp
+ *
+ * Copyright (c) 2014 steveoh
+ * Licensed under the MIT license.
+ */
+
+ 'use strict';
+var os = require('os');
+
 module.exports = function(text) {
+
     if (text === null || text === '') {
         return;
     }
@@ -25,7 +37,7 @@ module.exports = function(text) {
 
     var requires = requireArgs.join(',');
 
-    var unwound = '//>>built\r\ndefine([' + requires + ']' + matches[2];
+    var unwound = '//>>built' + os.EOL + 'define([' + requires + ']' + matches[2];
 
     return unwound;
 };
