@@ -74,7 +74,7 @@ module.exports = function(grunt) {
           if (extension === '.js' || extension === '.css') {
             body = unwind(body);
 
-            if(options.beautify){
+            if(options.beautify && extension === '.js'){
               body = beautify(body);
             }
           }
