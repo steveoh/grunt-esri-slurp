@@ -29,17 +29,27 @@ In your project's Gruntfile, add a section named `esri_slurp` to the data object
 module.exports = function (grunt) {
   grunt.initConfig({
     esri_slurp: {
-      options: {
-        version: '3.9',
-        packageLocation: 'src/esri',
-        beautify: true
+      dev: {
+        options: {
+          version: '3.10',
+          packageLocation: 'src/esri',
+          beautify: true
+        }
+      },
+      travis: {
+        options: {
+          version: '3.10',
+          packageLocation: 'src/esri',
+          beautify: false
+        }
       }
     }
   });
 
   grunt.loadNpmTasks('grunt-esri-slurp');
 
-  grunt.registerTask('slurp', ['esri_slurp']);
+  grunt.registerTask('slurp', ['esri_slurp:dev']);
+  grunt.registerTask('travis', ['esri_slurp:travis']);
 };
 ```
 
@@ -49,22 +59,24 @@ module.exports = function (grunt) {
 Type: `String`
 Default value: `'3.9'`
 
-A string value that is used to do something with whatever.
+A string value representing the version of the esri js api to download.
 
 #### options.packageLocation
 Type: `String`
 Default value: `'src/esri'`
 
-A string value that is used to do something else with whatever else.
+A string value letting grunt know where to put the downloaded files.
 
 #### options.beautify
 Type: `Boolean`
 Default value: `false`
 
-A boolean value to make the js code beautify before saving.
+A boolean value to make the js code beautiful before saving.
 
 ## Release History
-**0.5.0** Added js-beautify option. esriModuleBuilder task now works on windows. 3.10 module list now in plugin.
+**0.6.0** esri_slurp is now a [multi-task](http://gruntjs.com/api/grunt.task#grunt.task.registermultitask) in order to have target level options.
+
+**0.5.0** Added js-beautify option. esriModuleBuilder task now works on windows. `3.10` module list now in plugin.
 
 **0.4.0**: Added progress bar and task to build module list. Stored 3.8 and 3.9 modules by default. Anything earlier and you'll have to run it yourself.
 

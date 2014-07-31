@@ -20,7 +20,7 @@ var fs = require('fs'),
   unwind = require('./unwinder');
 
 module.exports = function(grunt) {
-  grunt.registerTask('esri_slurp', 'download esri js api amd modules and create a package', function() {
+  grunt.registerMultiTask('esri_slurp', 'download esri js api amd modules and create a package', function() {
     var options = this.options({
         packageLocation: path.join('src', 'esri'),
         version: '3.9',

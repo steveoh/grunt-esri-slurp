@@ -30,14 +30,16 @@ module.exports = function(grunt) {
       tests: ['tmp', 'src']
     },
     esri_slurp: {
-      options: {
-        version: version,
-        beautify: true
+      dev: {
+        options: {
+          version: version,
+          beautify: true
+        }
       },
       travis: {
         options: {
-          beautify: false,
-          version: version
+          version: version,
+          beautify: false
         }
       }
     },
@@ -46,8 +48,7 @@ module.exports = function(grunt) {
     },
     bump: {
       options: {
-        pushTo: 'origin',
-        commit: true
+        pushTo: 'origin'
       }
     },
     esri_slurp_modules: {
@@ -68,7 +69,7 @@ module.exports = function(grunt) {
 
   grunt.registerTask('test', ['clean', 'jshint', 'nodeunit']);
 
-  grunt.registerTask('default', ['jshint', 'esri_slurp']);
+  grunt.registerTask('default', ['jshint', 'esri_slurp:dev']);
 
   grunt.registerTask('generate_list', ['esri_slurp_modules']);
 
