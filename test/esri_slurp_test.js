@@ -53,5 +53,14 @@ exports.regular_expression = {
     test.equal(actual, expected, 'should only modify requires list');
 
     test.done();
+  },
+  layer_files: function(test){
+    var actual = grunt.file.read('test/expected/wound_layer_files');
+    actual = unwind(actual);
+    var expected = grunt.file.read('test/expected/unwound_layer_files');
+
+    test.equal(actual, expected, 'should get rid of everything in a leading require statement');
+
+    test.done();
   }
 };
