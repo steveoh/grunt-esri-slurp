@@ -19,6 +19,7 @@ module.exports = function(text) {
         text = text.replace(/dojo\/dijit\/themes/g, 'dijit/themes');
         text = text.replace(/dojo\/dojox\/grid\/resources\/images/g, 'dojox/grid/resources/images');
         text = text.replace(/dojo\/dojo\/resources\/images/g, 'dojo/resources/images');
+        text = text.replace(/^\/\/>>built[\n\r]?require\([\s\S]*define\("/, 'define("');
     }
 
     var matches = /define\(\"(.*)\".split\("\s"\),[\n\r]?function([\s\S]*)/m.exec(text);
