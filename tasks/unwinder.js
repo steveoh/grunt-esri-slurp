@@ -21,7 +21,7 @@ module.exports = function(text) {
         text = text.replace(/dojo\/dojo\/resources\/images/g, 'dojo/resources/images');
     }
 
-    var matches = /define\(\"(.*)\".split\("\s"\)([\s\S]*)/m.exec(text);
+    var matches = /define\(\"(.*)\".split\("\s"\),[\n\r]?function([\s\S]*)/m.exec(text);
 
     if (matches === null || matches.length < 2) {
         return text;
@@ -37,7 +37,7 @@ module.exports = function(text) {
 
     var requires = requireArgs.join(',');
 
-    var unwound = '//>>built' + os.EOL + 'define([' + requires + ']' + matches[2];
+    var unwound = '//>>built' + os.EOL + 'define([' + requires + '],function' + matches[2];
 
     return unwound;
 };

@@ -44,5 +44,14 @@ exports.regular_expression = {
     test.equal(actual, expected, 'should remove dojo prefix');
 
     test.done();
+  },
+  issue_17: function(test){
+    var actual = grunt.file.read('test/expected/wound_310_ArcGISTiledMapServiceLayer');
+    actual = unwind(actual);
+    var expected = grunt.file.read('test/expected/unwound_310_ArcGISTiledMapServiceLayer');
+
+    test.equal(actual, expected, 'should only modify requires list');
+
+    test.done();
   }
 };

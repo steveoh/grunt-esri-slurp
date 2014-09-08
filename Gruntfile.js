@@ -9,6 +9,9 @@
 'use strict';
 
 var version = '3.10';
+var bumpFiles = [
+  'package.json'
+];
 
 module.exports = function(grunt) {
   // load all npm grunt tasks
@@ -48,7 +51,9 @@ module.exports = function(grunt) {
     },
     bump: {
       options: {
-        pushTo: 'origin'
+        files: bumpFiles,
+        commitFiles: bumpFiles,
+        push: false
       }
     },
     esri_slurp_modules: {
