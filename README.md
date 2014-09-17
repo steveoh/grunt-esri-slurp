@@ -29,17 +29,17 @@ In your project's Gruntfile, add a section named `esri_slurp` to the data object
 module.exports = function (grunt) {
   grunt.initConfig({
     esri_slurp: {
+      options: {
+        version: '3.10',
+        packageLocation: 'src/esri'
+      },
       dev: {
         options: {
-          version: '3.10',
-          packageLocation: 'src/esri',
           beautify: true
         }
       },
       travis: {
         options: {
-          version: '3.10',
-          packageLocation: 'src/esri',
           beautify: false
         }
       }
@@ -72,6 +72,10 @@ Type: `Boolean`
 Default value: `false`
 
 A boolean value to make the js code beautiful before saving.
+
+## Examples
+
+For examples for working with `grunt-esri-slurp` please browse the [AGRC JavaScript BoilerPlate]() project as well as [@TomWayson](https://github.com/tomwayson)'s simple [slurp example](https://github.com/tomwayson/esri-slurp-example).
 
 ## Release History
 **0.6.0** esri_slurp is now a [multi-task](http://gruntjs.com/api/grunt.task#grunt.task.registermultitask) in order to have target level options.
