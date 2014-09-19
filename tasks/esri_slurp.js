@@ -24,16 +24,15 @@ module.exports = function(grunt) {
   grunt.registerMultiTask('esri_slurp', 'download esri js api amd modules and create a package', function() {
     var options = this.options({
         version: null,
-        dest: null,
         beautify: false
       }),
       done = this.async();
 
-    if (!options.version || !options.dest) {
-      grunt.fail.warn('version and dest properties are required');
+    if (!options.version || !this.files[0].dest) {
+      grunt.fail.warn('version option is required and tbe dest file property must be set on the target.');
     }
 
-    var packageLocation = options.dest;
+    var packageLocation = this.files[0].dest;
 
     packageLocation = S(packageLocation).ensureRight(path.sep).s;
 
@@ -84,9 +83,8 @@ module.exports = function(grunt) {
             if (options.beautify) {
               if (extension === '.js') {
                 body = beautify(body);
-              }
-              else if(extension = '.css'){
-                body = beautify_css (body);
+              } else if (extension = '.css') {
+                body = beautify_css(body);
               }
             }
           }

@@ -30,17 +30,18 @@ module.exports = function (grunt) {
   grunt.initConfig({
     esri_slurp: {
       options: {
-        version: '3.10',
-        dest: 'src/esri'
+        version: '3.10'
       },
       dev: {
         options: {
-          beautify: true
+          beautify: true,
+          dest: 'src/esri'
         }
       },
       travis: {
         options: {
-          beautify: false
+          beautify: false,
+          dest: 'src/esri'
         }
       }
     }
@@ -61,17 +62,19 @@ Default value: `null`
 
 A string value representing the version of the esri js api to download.
 
-#### options.dest
-Type: `String`
-Default value: `null`
-
-A string value letting grunt know where to put the downloaded files.
-
 #### options.beautify
 Type: `Boolean`
 Default value: `false`
 
 A boolean value to make the js and css code beautiful.
+
+### Files
+
+#### files.dest
+Type: `String`
+Default value: `null`
+
+A string value letting grunt know where to put the downloaded files.
 
 ## Examples
 

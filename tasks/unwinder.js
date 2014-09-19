@@ -6,7 +6,7 @@
  * Licensed under the MIT license.
  */
 
- 'use strict';
+'use strict';
 var os = require('os');
 
 module.exports = function(text) {
