@@ -29,7 +29,7 @@ module.exports = function(grunt) {
       done = this.async();
 
     if (!options.version || !this.files[0].dest) {
-      grunt.fail.warn('version option is required and tbe dest file property must be set on the target.');
+      grunt.fail.warn('version option is required and the dest file property must be set on the target.');
     }
 
     var packageLocation = this.files[0].dest;
