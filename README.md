@@ -40,7 +40,6 @@ module.exports = function (grunt) {
       },
       travis: {
         options: {
-          beautify: false,
           dest: 'src/esri'
         }
       }
