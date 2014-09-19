@@ -12,6 +12,7 @@ var fs = require('fs'),
 
   async = require('async'),
   beautify = require('js-beautify').js_beautify,
+  beautify_css = require('js-beautify').css,
   mkdirp = require('mkdirp'),
   request = require('request'),
   S = require('string'),
@@ -22,17 +23,23 @@ var fs = require('fs'),
 module.exports = function(grunt) {
   grunt.registerMultiTask('esri_slurp', 'download esri js api amd modules and create a package', function() {
     var options = this.options({
-        packageLocation: path.join('src', 'esri'),
-        version: '3.9',
+        version: null,
+        dest: null,
         beautify: false
       }),
       done = this.async();
 
-    options.packageLocation = S(options.packageLocation).ensureRight(path.sep).s;
+    if (!options.version || !options.dest) {
+      grunt.fail.warn('version and dest properties are required');
+    }
+
+    var packageLocation = options.dest;
+
+    packageLocation = S(packageLocation).ensureRight(path.sep).s;
 
     grunt.log.subhead('downloading esri version ' + options.version + ' modules');
 
-    mkdirp.sync(options.packageLocation);
+    mkdirp.sync(packageLocation);
 
     var esriVersionBaseUrl = 'http://js.arcgis.com/' + options.version + 'amd/js/esri/';
     grunt.verbose.writeln('esri base url: ' + esriVersionBaseUrl);
@@ -47,7 +54,7 @@ module.exports = function(grunt) {
 
     async.eachLimit(esriModules, 20, function(file, callback) {
       var subPath = S(path.dirname(file)).ensureRight('/').s,
-        fileFolder = path.join(options.packageLocation, subPath),
+        fileFolder = path.join(packageLocation, subPath),
         fileName = path.basename(file),
         httpUrl = esriVersionBaseUrl + subPath + fileName;
 
@@ -68,14 +75,19 @@ module.exports = function(grunt) {
             return;
           }
 
-          var newFile = path.join(options.packageLocation, file);
+          var newFile = path.join(packageLocation, file);
 
           var extension = path.extname(file);
           if (extension === '.js' || extension === '.css') {
             body = unwind(body);
 
-            if(options.beautify && extension === '.js'){
-              body = beautify(body);
+            if (options.beautify) {
+              if (extension === '.js') {
+                body = beautify(body);
+              }
+              else if(extension = '.css'){
+                body = beautify_css (body);
+              }
             }
           }
 

@@ -33,15 +33,17 @@ module.exports = function(grunt) {
       tests: ['tmp', 'src']
     },
     esri_slurp: {
+      options:{
+        version: version,
+        dest: 'src/esri'
+      },
       dev: {
         options: {
-          version: version,
           beautify: true
         }
       },
       travis: {
         options: {
-          version: version,
           beautify: false
         }
       }
