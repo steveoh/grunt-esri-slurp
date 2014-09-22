@@ -14,6 +14,7 @@ var fs = require('fs'),
   beautify = require('js-beautify').js_beautify,
   beautify_css = require('js-beautify').css,
   mkdirp = require('mkdirp'),
+  os = require('os'),
   request = require('request'),
   S = require('string'),
   ProgressBar = require('progress'),
@@ -36,7 +37,7 @@ module.exports = function(grunt) {
 
     packageLocation = S(packageLocation).ensureRight(path.sep).s;
 
-    grunt.log.subhead('downloading esri version ' + options.version + ' modules');
+    grunt.log.subhead('downloading and processing esri version ' + options.version + ' modules');
 
     mkdirp.sync(packageLocation);
 
@@ -45,7 +46,7 @@ module.exports = function(grunt) {
 
     var esriModules = require('./esriModules-' + options.version);
 
-    var bar = new ProgressBar('downloading [:bar] :percent :etas', {
+    var bar = new ProgressBar('[:bar] :percent remaining: :etas elapsed: :elapseds', {
       total: esriModules.length,
       stream: process.stdout,
       width: 30
