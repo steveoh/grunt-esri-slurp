@@ -1,9 +1,9 @@
 [![Build Status](https://travis-ci.org/steveoh/grunt-esri-slurp.svg?branch=master)](https://travis-ci.org/steveoh/grunt-esri-slurp)
 [![Dependency Status](https://gemnasium.com/steveoh/grunt-esri-slurp.svg)](https://gemnasium.com/steveoh/grunt-esri-slurp)
 [![NPM version](https://badge.fury.io/js/grunt-esri-slurp.svg)](http://badge.fury.io/js/grunt-esri-slurp)
-# esri-slurp
+# esri-slurp may the slource™ be with you!
 
-> download esri js api amd modules to create a local package
+> download and unwind esri js api amd modules and css to create a local package for builds, testing, and continuous integration. The best way to get the slource™.
 
 ## Getting Started
 This plugin requires Grunt.
