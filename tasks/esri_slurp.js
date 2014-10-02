@@ -82,10 +82,15 @@ module.exports = function(grunt) {
             body = unwind(body);
 
             if (options.beautify) {
-              if (extension === '.js') {
-                body = beautify(body);
-              } else if (extension = '.css') {
-                body = beautify_css(body);
+              try {
+                if (extension === '.js') {
+                  body = beautify(body);
+                } else if (extension = '.css') {
+                  body = beautify_css(body);
+                }
+              } catch (e) {
+                grunt.log.warn(os.EOL + 'error beautifying: ' + file + ' ' + e);
+                // swallow it's not the end of the world if it's not beautiful
               }
             }
           }
