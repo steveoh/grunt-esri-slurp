@@ -4,7 +4,6 @@
  *
  * Copyright (c) 2014 steveoh
  * Licensed under the MIT license.
- * http://www.esri.com/apps/products/download/index.cfm?fuseaction=download.all#ArcGIS_API_for_JavaScript
  */
 
 'use strict';
@@ -19,17 +18,23 @@ var walk = require('walk'),
         files: []
     };
 
+/*
+    navigate to https://developers.arcgis.com/en/downloads/
+    download the javascript api.
+    navigate to arcgis_js_v311_api/arcgis_js_api/library/3.11/3.11/esri
+    extract and make whatever changes you need to get to this format /jsapi/{version}/js/esri
+    update the Gruntfile's version property
+    then run grunt generate_list
+*/
 module.exports = function(grunt) {
     grunt.registerTask('esri_slurp_modules', 'build module list', function() {
-        var options = this.options({
-            version: '3.10'
-        });
+        var options = this.options();
         var location = path.join('jsapi', options.version, 'js', 'esri'),
             resolved = '.' + path.sep + location,
             template = Handlebars.compile('module.exports = [{{#each files}}{{#if @index}},\n {{/if}}\'{{this}}\'{{/each}}];'),
             done = this.async();
 
-        grunt.log.subhead('parsing: ' + resolved);
+        grunt.log.writeln('parsing: ' + resolved);
 
         // Walker options
         var walker = walk.walk(resolved, {
@@ -47,24 +52,27 @@ module.exports = function(grunt) {
             var fileName = path.join(root, stat.name);
 
             var moduleName = S(fileName.replace(location, '')).chompLeft(path.sep).s;
-
+            grunt.log.debug(moduleName);
             if (fix_windows) {
                 moduleName = S(moduleName).replaceAll(path.sep, '/');
-                model.files.push(moduleName);
             }
+
+            model.files.push(moduleName);
 
             next();
         });
 
+        grunt.log.ok();
+
         walker.on('end', function() {
             var data = template(model);
-            fs.writeFile(path.join('.', 'tasks', 'esriModules-' + options.version + '.js'), data, function(err) {
-                if (err) {
-                    grunt.fail.warn(err);
-                }
+            var fileLocation = path.join('.', 'tasks', 'esriModules-' + options.version + '.js');
+            grunt.log.writeln('writing modules: ' + fileLocation);
 
-                done();
-            });
+            fs.writeFileSync(fileLocation, data);
+
+            grunt.log.ok();
+            done();
         });
     });
 };

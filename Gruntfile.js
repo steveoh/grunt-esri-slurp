@@ -8,7 +8,7 @@
 
 'use strict';
 
-var version = '3.10';
+var version = '3.11';
 var bumpFiles = [
   'package.json'
 ];
@@ -34,7 +34,7 @@ module.exports = function(grunt) {
     },
     esri_slurp: {
       options: {
-        version: '3.10'
+        version: version
       },
       dev: {
         options: {
