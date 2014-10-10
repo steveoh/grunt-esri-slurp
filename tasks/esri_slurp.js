@@ -41,7 +41,14 @@ module.exports = function(grunt) {
 
     mkdirp.sync(packageLocation);
 
-    var esriVersionBaseUrl = 'http://js.arcgis.com/' + options.version + 'amd/js/esri/';
+    var esriVersionBaseUrl = 'http://js.arcgis.com/' + options.version;
+    if(+options.version > 3.10){
+     esriVersionBaseUrl += 'amd/esri/';
+    }
+    else{
+      esriVersionBaseUrl += 'amd/js/esri/';
+    }
+
     grunt.verbose.writeln('esri base url: ' + esriVersionBaseUrl);
 
     var esriModules = require('./esriModules-' + options.version);
