@@ -57,7 +57,9 @@ module.exports = function(grunt) {
                 moduleName = S(moduleName).replaceAll(path.sep, '/');
             }
 
-            model.files.push(moduleName);
+            if (moduleName[0] !== '.') {
+                model.files.push(moduleName);
+            }
 
             next();
         });
