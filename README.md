@@ -30,7 +30,7 @@ module.exports = function (grunt) {
   grunt.initConfig({
     esri_slurp: {
       options: {
-        version: '3.10'
+        version: '3.11'
       },
       dev: {
         options: {
@@ -78,6 +78,8 @@ A string value letting grunt know where to put the downloaded files.
 For examples for working with `grunt-esri-slurp` please browse the [AGRC JavaScript BoilerPlate]() project as well as [@TomWayson](https://github.com/tomwayson)'s simple [slurp example](https://github.com/tomwayson/esri-slurp-example).
 
 ## Release History
+**1.1.0** Added esri `3.11` modules
+
 **1.0.0** changed `packageLocation` -> `dest` and removed default value. This follows the grunt conventions and makes slurp work with other plugins like `grunt-if-missing`. Removed the default value for the `version` property. Added css beautification.
 
 **0.6.0** esri_slurp is now a [multi-task](http://gruntjs.com/api/grunt.task#grunt.task.registermultitask) in order to have target level options.
