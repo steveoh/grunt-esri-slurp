@@ -37,7 +37,7 @@ module.exports = function(grunt) {
 
     packageLocation = S(packageLocation).ensureRight(path.sep).s;
 
-    grunt.log.subhead('downloading and processing esri version ' + options.version + ' modules');
+    grunt.log.subhead('downloading and processing esri version ' + options.version);
 
     mkdirp.sync(packageLocation);
 
