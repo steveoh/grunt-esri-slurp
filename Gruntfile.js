@@ -55,11 +55,6 @@ module.exports = function(grunt) {
         commitFiles: bumpFiles,
         push: false
       }
-    },
-    esri_slurp_modules: {
-      options: {
-        version: version
-      }
     }
   });
 
@@ -75,8 +70,6 @@ module.exports = function(grunt) {
   grunt.registerTask('test', ['clean', 'jshint', 'nodeunit']);
 
   grunt.registerTask('default', ['jshint', 'esri_slurp:dev']);
-
-  grunt.registerTask('generate_list', ['esri_slurp_modules']);
 
   grunt.registerTask('travis', ['jshint', 'esri_slurp:travis', 'nodeunit']);
 };

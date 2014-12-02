@@ -6,7 +6,7 @@
 > Download and unwind esri js api amd modules and css to create a local package for builds, testing, and continuous integration. The best way to get the slource™.
 
 ## Getting Started
-This plugin requires Grunt.
+This is a Grunt plugin for [esrislurp](https://github.com/steveoh/esrislurp).
 
 If you haven't used [Grunt](http://gruntjs.com/) before, be sure to check out the [Getting Started](http://gruntjs.com/getting-started) guide, as it explains how to create a [Gruntfile](http://gruntjs.com/sample-gruntfile) as well as install and use Grunt plugins. Once you're familiar with that process, you may install this plugin with this command:
 
@@ -65,7 +65,7 @@ Default value: `false`
 
 A boolean value to make the js and css code beautiful.
 
-### Files
+### FilesÂ
 
 #### files.dest
 Type: `String`
