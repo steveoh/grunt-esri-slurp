@@ -32,7 +32,7 @@
     "load-grunt-tasks": "^0"
   },
   "dependencies": {
-    "esrislurp": "~1.1.0",
+    "esrislurp": "git://github.com/phillipgreenii/esrislurp.git#5d6b2e7ab82543e3744e469ee2b65c920b1b482b",
     "progress": "^1.1.5",
     "request": "^2.34.0",
     "string": "^2.1.0"
