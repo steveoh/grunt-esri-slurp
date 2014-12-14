@@ -29,7 +29,7 @@
     "grunt-contrib-nodeunit": "^0",
     "grunt-node-inspector": "^0",
     "jshint-stylish": "^1",
-    "load-grunt-tasks": "^0"
+    "load-grunt-tasks": "^1"
   },
   "dependencies": {
     "esrislurp": "^0",
