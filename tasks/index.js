@@ -7,7 +7,7 @@
  */
 
 'use strict';
-var slurpEsri = require('esrislurp'),
+var esrislurp = require('esrislurp'),
   ProgressBar = require('progress');
 
 module.exports = function(grunt) {
@@ -46,7 +46,7 @@ module.exports = function(grunt) {
 
     grunt.log.subhead('downloading and processing esri version ' + options.version);
 
-    slurpEsri(this.files[0].dest, options.version, options.beautify, onSuccess, onError, onProgress);
+    esrislurp(this.files[0].dest, options.version, options.beautify, onSuccess, onError, onProgress);
 
   });
 };

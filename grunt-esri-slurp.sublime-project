@@ -1,7 +1,8 @@
 {
     "folders": [{
         "folder_exclude_patterns": [
-            "node_modules"
+            "node_modules",
+            "src"
         ],
         "file_exclude_patterns": [
             "*.sublime-workspace"
