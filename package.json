@@ -34,6 +34,7 @@
   },
   "dependencies": {
     "esrislurp": "^0",
+    "mkdirp": "^0",
     "progress": "^1",
     "request": "^2",
     "string": "^2"
