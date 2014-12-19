@@ -65,7 +65,7 @@ Default value: `false`
 
 A boolean value to make the js and css code beautiful.
 
-### FilesÂ
+### Files
 
 #### files.dest
 Type: `String`

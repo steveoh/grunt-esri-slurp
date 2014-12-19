@@ -8,7 +8,7 @@
 
 'use strict';
 
-var version = '3.11';
+var version = '3.12';
 var bumpFiles = [
   'package.json'
 ];
@@ -46,14 +46,26 @@ module.exports = function(grunt) {
         dest: 'src/esri'
       }
     },
+    esri_slurp_modules:{
+      options: {
+        version: version,
+        src: './',
+        dest: './modules'
+      }
+    },
     nodeunit: {
       tests: ['test/*_test.js']
     },
     bump: {
       options: {
         files: bumpFiles,
-        commitFiles: bumpFiles,
+        commitFiles: bumpFiles.concat('README.md'),
         push: false
+      }
+    },
+    debug: {
+      options: {
+        open: true
       }
     }
   });
@@ -70,6 +82,8 @@ module.exports = function(grunt) {
   grunt.registerTask('test', ['clean', 'jshint', 'nodeunit']);
 
   grunt.registerTask('default', ['jshint', 'esri_slurp:dev']);
+
+  grunt.registerTask('create_modules', ['esri_slurp_modules']);
 
   grunt.registerTask('travis', ['jshint', 'esri_slurp:travis', 'nodeunit']);
 };
