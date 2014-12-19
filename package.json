@@ -33,6 +33,7 @@
     "load-grunt-tasks": "^1"
   },
   "dependencies": {
+    "async": "^0.9",
     "esrislurp": "^0",
     "mkdirp": "^0",
     "progress": "^1",
