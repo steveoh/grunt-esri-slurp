@@ -1,6 +1,6 @@
-node_modules
-npm-debug.log
-tmp
-src
 *.sublime-workspace
 jsapi
+node_modules
+npm-debug.log
+src
+tmp

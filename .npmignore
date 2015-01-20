@@ -1,7 +1,8 @@
 *.sublime-project
-.travis.yml
-.gitignore
+*.sublime-workspace
 .editorconfig
+.gitignore
+.travis.yml
 jsapi
 node_modules
 test
