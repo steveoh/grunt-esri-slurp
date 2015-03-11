@@ -8,7 +8,7 @@
 
 'use strict';
 
-var version = '3.12';
+var version = '3.13';
 var bumpFiles = [
   'package.json'
 ];
