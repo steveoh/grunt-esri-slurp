@@ -1,6 +1,6 @@
 {
   "name": "grunt-esri-slurp",
-  "version": "1.4.3",
+  "version": "1.4.4",
   "description": "grunt plugin to get the slource by downloading the esri js api amd modules and creating a package.",
   "homepage": "https://github.com/steveoh/grunt-esri-slurp",
   "repository": {
