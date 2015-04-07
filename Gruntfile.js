@@ -70,13 +70,6 @@ module.exports = function(grunt) {
     }
   });
 
-  for (var key in grunt.file.readJSON('package.json').devDependencies) {
-    console.log(key);
-    if (key !== 'grunt' && key.indexOf('grunt') === 0) {
-      grunt.loadNpmTasks(key);
-    }
-  }
-
   grunt.loadTasks('tasks');
 
   grunt.registerTask('test', ['clean', 'jshint', 'nodeunit']);
