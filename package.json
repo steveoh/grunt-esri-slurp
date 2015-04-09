@@ -34,7 +34,7 @@
   },
   "dependencies": {
     "async": "^0.9",
-    "esrislurp": "1.0.2",
+    "esrislurp": "1.0.3",
     "mkdirp": "^0",
     "progress": "^1"
   },
