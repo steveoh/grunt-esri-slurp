@@ -46,13 +46,6 @@ module.exports = function(grunt) {
         dest: 'src/esri'
       }
     },
-    esri_slurp_modules:{
-      options: {
-        version: version,
-        src: './',
-        dest: './modules'
-      }
-    },
     nodeunit: {
       tests: ['test/*_test.js']
     },
@@ -75,8 +68,6 @@ module.exports = function(grunt) {
   grunt.registerTask('test', ['clean', 'jshint', 'nodeunit']);
 
   grunt.registerTask('default', ['jshint', 'esri_slurp:dev']);
-
-  grunt.registerTask('create_modules', ['esri_slurp_modules']);
 
   grunt.registerTask('travis', ['jshint', 'esri_slurp:travis', 'nodeunit']);
 };
