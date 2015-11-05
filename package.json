@@ -33,7 +33,7 @@
     "load-grunt-tasks": "^3.x"
   },
   "dependencies": {
-    "esrislurp": "1.2.2",
+    "esrislurp": "1.2.3",
     "progress": "^1.x"
   },
   "scripts": {

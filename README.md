@@ -78,6 +78,8 @@ A string value letting grunt know where to put the downloaded files.
 For examples for working with `grunt-esri-slurp` please browse the [AGRC JavaScript BoilerPlate](https://github.com/agrc/AGRCJavaScriptProjectBoilerPlate) project as well as [@TomWayson](https://github.com/tomwayson)'s simple [slurp example](https://github.com/tomwayson/esri-slurp-example).
 
 ## Release History
+**2.0.2** Update `esrislurp` to fix 3.14 dojo build errors.
+
 **2.0.1** Update `esrislurp` to include 3.14 esri modules.
 
 **2.0.0** Update `esrislurp` and remove module creation functionality.
