@@ -1,6 +1,12 @@
 [![Build Status](https://travis-ci.org/steveoh/grunt-esri-slurp.svg?branch=master)](https://travis-ci.org/steveoh/grunt-esri-slurp)
 [![Dependency Status](https://gemnasium.com/steveoh/grunt-esri-slurp.svg)](https://gemnasium.com/steveoh/grunt-esri-slurp)
 [![NPM version](https://badge.fury.io/js/grunt-esri-slurp.svg)](http://badge.fury.io/js/grunt-esri-slurp)
+[![deprecated](http://badges.github.io/stability-badges/dist/deprecated.svg)](http://github.com/badges/stability-badges)
+
+# Deprecation notice
+
+Please consider the use of https://github.com/Esri/arcgis-js-api. Slurp was a stop gap while esri got their act together and published the jsapi to somewhere that makes slurp unnecessary. Thanks for all of the contributions and support along the way. This package will be around for legacy purposes only and will not get further updates unless there is a good reason to do so.
+
 # esri-slurp may the slource™ be with you!
 
 > Download and unwind esri js api amd modules and css to create a local package for builds, testing, and continuous integration. The best way to get the slource™.
